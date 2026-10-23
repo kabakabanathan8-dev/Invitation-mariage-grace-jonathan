@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8dce7">
+  <meta name="description" content="Invitation au mariage de Grâce et Jonathan à Bandundu-ville.">
+  <title>Grâce ♥ Jonathan — Invitation de mariage</title>
+  <style>
+    :root{--rose:#c44e7a;--rose-dark:#8f3158;--pink:#fff0f5;--gold:#b88b45;--ink:#4b2938}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(135deg,#fff7fa,#f8dce7 48%,#fff7fa);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+    .page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
+    .heart{position:fixed;color:#e7a4bd;opacity:.25;pointer-events:none;font-size:32px;animation:float 7s ease-in-out infinite}
+    .h1{top:8%;left:8%}.h2{top:18%;right:9%;animation-delay:1s}.h3{bottom:12%;left:12%;animation-delay:2s}.h4{bottom:8%;right:12%;animation-delay:3s}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+    .card{width:min(760px,100%);background:rgba(255,255,255,.91);border:1px solid #e8c6d2;border-radius:24px;box-shadow:0 22px 70px #8d3b5a20;padding:clamp(24px,5vw,54px);text-align:center;position:relative}
+    .card:before{content:"";position:absolute;inset:10px;border:1px solid #d9b16c;border-radius:17px;pointer-events:none}
+    .topline{font:600 11px/1.6 Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:4px 0 18px}
+    .small-heart{color:var(--rose);font-size:28px;margin:0 0 10px}
+    h1{font-size:clamp(38px,8vw,72px);font-weight:normal;line-height:1.05;margin:8px 0;color:var(--rose-dark)}
+    .amp{color:var(--gold);font-style:italic;font-size:.72em}
+    .subtitle{font-size:clamp(17px,3vw,22px);font-style:italic;margin:20px auto;max-width:520px;line-height:1.6}
+    .rule{width:110px;height:1px;background:var(--gold);margin:24px auto}
+    .details{font:15px/1.9 Arial,sans-serif;letter-spacing:.03em}
+    .details strong{color:var(--rose-dark)}
+    .date{display:inline-block;margin:10px auto;padding:9px 18px;border:1px solid #e5bfd0;border-radius:99px;background:#fff8fb;color:var(--rose-dark);font:600 12px Arial,sans-serif;letter-spacing:.08em}
+    .note{font-size:15px;font-style:italic;line-height:1.6;margin:22px auto 0;max-width:470px}
+    .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+    button{border:0;border-radius:999px;padding:12px 19px;background:var(--rose);color:white;font-weight:700;cursor:pointer;font-size:14px;box-shadow:0 6px 18px #c44e7a30}
+    button.secondary{background:#fff;color:var(--rose-dark);border:1px solid #dfb6c6;box-shadow:none}
+    button:hover{transform:translateY(-1px)}
+    .qr-panel{display:none;margin:24px auto 0;padding:18px;background:#fff8fb;border:1px solid #e8c6d2;border-radius:16px;max-width:310px}
+    .qr-panel.show{display:block}
+    #qrcode{display:flex;justify-content:center;min-height:180px;align-items:center;background:white;padding:10px;border-radius:8px}
+    #qrcode img,#qrcode canvas{max-width:100%;height:auto!important}
+    .qr-caption{font:12px/1.5 Arial,sans-serif;color:#795467;margin:12px 0 0;overflow-wrap:anywhere}
+    .footer{font:11px Arial,sans-serif;color:#9a7183;margin-top:28px;letter-spacing:.05em}
+    .toast{font:12px Arial,sans-serif;color:var(--rose-dark);margin-top:8px}
+    @media(max-width:480px){.page{padding:12px}.card{padding:28px 20px}.card:before{inset:7px}.details{font-size:13px}.actions button{width:100%}}
+    @media(prefers-reduced-motion:reduce){.heart{animation:none}button:hover{transform:none}}
+  </style>
+</head>
+<body>
+  <span class="heart h1">♥</span><span class="heart h2">♡</span><span class="heart h3">♥</span><span class="heart h4">♡</span>
+  <main class="page">
+    <article class="card">
+      <div class="topline">Une journée • Deux cœurs • Un amour</div>
+      <div class="small-heart">♡</div>
+      <p class="topline">Invitation au mariage</p>
+      <h1>Grâce <span class="amp">&amp;</span><br>Jonathan</h1>
+      <div class="rule"></div>
+      <p class="subtitle">Avec beaucoup de joie et d’amour, nous vous invitons à partager avec nous le bonheur de notre union.</p>
+      <div class="date">DATE : À CONFIRMER</div>
+      <div class="details">
+        <div>📍 <strong>Lieu</strong></div>
+        <div>Salle polyvalente Miamor</div>
+        <div>Bandundu-ville, République démocratique du Congo</div>
+        <div style="margin-top:10px">🕡 <strong>Heure : 18 h 30</strong></div>
+      </div>
+      <div class="rule"></div>
+      <p class="note">Votre présence sera pour nous un précieux cadeau.<br>Au plaisir de célébrer cet amour avec vous !</p>
+      <div class="actions">
+        <button id="showQr">Afficher le QR code</button>
+        <button class="secondary" id="shareBtn">Partager l’invitation</button>
+      </div>
+      <section class="qr-panel" id="qrPanel" aria-live="polite">
+        <div id="qrcode"></div>
+        <p class="qr-caption">Après la publication du site, ce QR code renverra vers cette invitation en ligne.</p>
+        <button class="secondary" id="downloadQr" style="margin-top:12px">Télécharger le QR code</button>
+        <div class="toast" id="qrMessage"></div>
+      </section>
+      <div class="footer">GRÂCE ♥ JONATHAN · CÉLÉBRONS L’AMOUR</div>
+    </article>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const qrPanel = document.getElementById('qrPanel');
+    const qrBox = document.getElementById('qrcode');
+    const qrMessage = document.getElementById('qrMessage');
+    let qrCreated = false;
+    document.getElementById('showQr').addEventListener('click', () => {
+      qrPanel.classList.toggle('show');
+      if (!qrCreated) {
+        if (window.location.protocol === 'file:') {
+          qrMessage.textContent = 'Publiez d’abord le site sur Internet : le QR code final doit contenir son adresse en ligne.';
+          qrBox.innerHTML = '<p style="font:13px Arial,sans-serif;color:#8f3158;padding:10px">QR code disponible après publication du site.</p>';
+        } else if (window.QRCode) {
+          new QRCode(qrBox, {text: window.location.href.split('#')[0], width: 180, height: 180, colorDark: '#8f3158', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H});
+          qrCreated = true;
+        } else {
+          qrMessage.textContent = 'Connexion Internet nécessaire pour créer le QR code.';
+        }
+      }
+    });
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      const data = {title: document.title, text: 'Invitation au mariage de Grâce et Jonathan — Salle polyvalente Miamor, Bandundu-ville, à 18 h 30.', url: window.location.href};
+      try {
+        if (navigator.share) await navigator.share(data);
+        else if (navigator.clipboard) { await navigator.clipboard.writeText(window.location.href); alert('Lien copié ! Vous pouvez le partager.'); }
+        else alert('Copiez le lien dans la barre d’adresse pour le partager.');
+      } catch(e) {}
+    });
+    document.getElementById('downloadQr').addEventListener('click', () => {
+      const canvas = qrBox.querySelector('canvas');
+      const img = qrBox.querySelector('img');
+      let url = canvas ? canvas.toDataURL('image/png') : (img ? img.src : '');
+      if (!url || url.startsWith('data:,')) { qrMessage.textContent = 'Le QR code sera téléchargeable après publication du site.'; return; }
+      const a = document.createElement('a'); a.href = url; a.download = 'QR-code-mariage-Grace-Jonathan.png'; a.click();
+    });
+  </script>
+</body>
+</html>
